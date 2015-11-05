@@ -41,6 +41,11 @@ var config = {
   postcss: [autoprefixer, csswring],
   devtool: 'eval',
   // devtool: 'sourcemap',
+  devServer: {
+    hot: true,
+    inline: true,
+    lazy: false,
+  },
 }
 
 module.exports = config
