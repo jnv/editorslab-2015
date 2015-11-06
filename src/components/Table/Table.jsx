@@ -56,7 +56,7 @@ function TableWrapper (props) {
   const filterFun = bindFilter(onFilterClick)
 
   return (
-    <Table>
+    <Table className="Table" fixedHeader={true} height="20em">
       <TableHeader displaySelectAll={false}>
         <TableRow>
           <TableHeaderColumn>Country</TableHeaderColumn>
