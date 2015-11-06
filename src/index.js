@@ -4,16 +4,6 @@ import Container from './components/Container'
 
 require('./index.css')
 
-const data = [{
-  country: 'Syria',
-  people: 189605,
-  war: true,
-  corruption: true,
-  freedom: true,
-  life_expectancy: true,
-},
-]
-
 import injectTapEventPlugin from 'react-tap-event-plugin'
 // Needed for onTouchTap
 // Can go away when react 1.0 release
