@@ -1,7 +1,6 @@
 import React from 'react'
 import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme'
 import ThemeManager from 'material-ui/lib/styles/theme-manager'
-import Colors from 'material-ui/lib/styles/colors'
 
 import Table from '../Table'
 import Chart from '../Chart'

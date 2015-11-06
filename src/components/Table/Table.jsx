@@ -1,6 +1,7 @@
 import React from 'react'
 import mapObj from '../../mapObj'
-import {Checkbox, Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn} from 'material-ui'
+import {FontIcon, Checkbox, Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn} from 'material-ui'
+import Colors from 'material-ui/lib/styles/colors'
 
 function filterClassName (filtered) {
   return filtered ? 'is-filtered' : ''
@@ -26,19 +27,42 @@ function FilterCheckbox (props) {
   )
 }
 
+function CellIcon (props) {
+  const {filtered, value} = props
+  const color = !filtered ? Colors.red500 : Colors.grey500
+  if (value) {
+    return (
+      <div className="Table-featureIcon">
+      <FontIcon
+        className="fa fa-exclamation-circle"
+        color={color}
+      />
+      </div>
+      )
+  } else {
+    return <div className="Table-featureIcon" />
+  }
+}
+
 function CountryRow (props) {
-  const {data, country, onClick, filtered} = props
+  const {filterTest, data, country, onClick} = props
+  const rowFiltered = filterTest(country)
   return (
-    <TableRow className={`Table-countryRow ${filterClassName(filtered)}`}>
+    <TableRow className={`Table-countryRow ${filterClassName(rowFiltered)}`}>
       <TableHeaderColumn>
         <FilterCheckbox
           label={country}
           onClick={onClick}
-          filtered={filtered}
+          filtered={rowFiltered}
         />
       </TableHeaderColumn>
-      {mapObj((value, i) => (
-        <TableRowColumn key={i}>{value}</TableRowColumn>
+      {mapObj((value, col) => (
+        <TableRowColumn key={col} className="Table-featureCell">
+        <CellIcon
+          value={value}
+          filtered={rowFiltered || filterTest(col)}
+        />
+        </TableRowColumn>
       ), data)}
     </TableRow>
   )
@@ -56,7 +80,7 @@ function TableWrapper (props) {
   const filterFun = bindFilter(onFilterClick)
 
   return (
-    <Table className="Table" fixedHeader={true} height="20em">
+    <Table className="Table" fixedHeader height="20em">
       <TableHeader displaySelectAll={false}>
         <TableRow>
           <TableHeaderColumn>Country</TableHeaderColumn>
@@ -82,7 +106,7 @@ function TableWrapper (props) {
             <CountryRow
               data={data}
               onClick={filterFun(name)}
-              filtered={filterTest(name)}
+              filterTest={filterTest}
               country={name}
             />
           )
