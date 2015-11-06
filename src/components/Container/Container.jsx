@@ -26,18 +26,20 @@ const Container = React.createClass({
   },
 
   toggleFilter (filter) {
-    const opposite = !this.state[filter]
-    console.log(filter, opposite)
-    this.setState({
+    const opposite = !this.state.filters[filter]
+    const filters = {
+      ...this.state.filters,
       [filter]: opposite,
-    })
+    }
+    this.setState({filters: filters})
   },
 
   isFiltered (what) {
-    return !!this.state[what]
+    return !!this.state.filters[what]
   },
 
   render () {
+    console.log(data.countUnfiltered(this.state.filters))
     return (
       <div className="Container">
         <Table
