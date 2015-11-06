@@ -4,7 +4,7 @@ var csswring = require('csswring')
 var path = require('path')
 
 var config = {
-  entry: ['webpack/hot/dev-server', './src/scripts/app.js'],
+  entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].[hash].js',
@@ -18,6 +18,9 @@ var config = {
     }, {
       test: /\.css$/,
       loader: 'style!css!postcss',
+    }, {
+      test: /\.json$/,
+      loader: 'json',
     }, {
       test: /\.woff$|\.ttf$|\.wav$|\.mp3$/,
       loader: 'file',
@@ -39,8 +42,8 @@ var config = {
     }),
   ],
   postcss: [autoprefixer, csswring],
-  devtool: 'eval',
-  // devtool: 'sourcemap',
+  // devtool: 'eval',
+  devtool: 'sourcemap',
   devServer: {
     hot: true,
     inline: true,
