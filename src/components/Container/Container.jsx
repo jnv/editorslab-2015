@@ -8,15 +8,16 @@ const Container = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getInitialState () {
-    return {
-      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-    }
-  },
-
   getChildContext () {
     return {
       muiTheme: this.state.muiTheme,
+    }
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+      filters: {},
     }
   },
 
