@@ -1,19 +1,32 @@
 import React from 'react'
+import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme'
+import ThemeManager from 'material-ui/lib/styles/theme-manager'
+import Colors from 'material-ui/lib/styles/colors'
 
 const Container = React.createClass({
-  render: function () {
-    const features = this.props.features.map(feature => {
-      return (<li><a href={feature.url}>{feature.name}</a></li>)
-    })
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getInitialState () {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+    }
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    }
+  },
+
+  render () {
     return (
-      <div className="main">
-        <div className="welcomeMsg">
+      <div className="Container">
+        <h1>
           Congratulations, you now have a working react.js application.
-        </div>
+        </h1>
         Features include:
-        <ul className="featureList">
-          {features}
-        </ul>
       </div>
     )
   },
