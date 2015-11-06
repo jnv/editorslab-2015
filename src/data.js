@@ -30,9 +30,8 @@ const filterPredicate = (filters) => {
   return (value, key) => !filters[key]
 }
 
-export const countUnfiltered = (filters) => {
+export const countUnfiltered = R.memoize((filters) => {
   // first get rid of countries which are filtered
   const activeCount = R.pickBy(filterPredicate(filters), COUNT)
-  console.log(activeCount)
   return sumCount(activeCount)
-}
+})
