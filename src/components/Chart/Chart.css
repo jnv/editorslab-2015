@@ -5,9 +5,13 @@
 .Chart-fill {
   display: block;
   height: 100%;
-  background-color: #f00;
+  background-color: $red700;
   text-align: right;
-  transition: width 1s ease;
+  transition: width 1s ease, background-color 1s ease;
+}
+
+.Chart-fill.is-ok {
+  background-color: $green500;
 }
 
 .Chart-percentDesc {
