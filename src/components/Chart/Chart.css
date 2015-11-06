@@ -1,19 +1,34 @@
 .Chart {
-  height: 3em;
+  height: 40px;
+  background-color: $grey200;
+  position: relative;
 }
 
 .Chart-fill {
   display: block;
   height: 100%;
-  background-color: $red700;
+  background-color: $red500;
   text-align: right;
   transition: width 1s ease, background-color 1s ease;
 }
 
 .Chart-fill.is-ok {
-  background-color: $green500;
+  background-color: $lightGreen500;
 }
 
 .Chart-percentDesc {
-  margin: 1ex;
+  color: white;
+  float: right;
+  padding: 10px 1em;
+  font-weight: 500;
+}
+
+.Chart-mark {
+  position: absolute;
+  border: 1px solid $grey400;
+  opacity: 0.6;
+  border-width: 0 3px 0 0;
+  top: 0;
+  left: 50%;
+  height: 40px;
 }

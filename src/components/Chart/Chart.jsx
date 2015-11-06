@@ -20,6 +20,7 @@ function Chart (props) {
           <span className="Chart-percentDesc">
             {`${current} (${displayPercent(percentage)}%)`}
           </span>
+          <div className="Chart-mark" />
         </span>
       </div>
     </Paper>
