@@ -1,40 +1,46 @@
 import React from 'react'
 import mapObj from '../../mapObj'
-import {head} from 'ramda'
-
-function cntr (data, country) {
-  return (
-    <tr key={country}>
-      <th>{country}</th>
-      {mapObj((value, i) => (
-        <td key={i}>{value}</td>
-      ), data)}
-    </tr>
-  )
-}
+import {Checkbox, Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn} from 'material-ui'
 
 function filterClassName (filtered) {
   return filtered ? 'is-filtered' : ''
 }
 
 function ColumnHead (props) {
-  const {onClick, filtered} = props
+  const {filtered} = props
   return (
-    <th onClick={onClick} className={`Table-columnHead ${filterClassName(filtered)}`}>
+    <TableHeaderColumn className={`Table-columnHead ${filterClassName(filtered)}`}>
       {props.children}
-    </th>
+    </TableHeaderColumn>
+  )
+}
+
+function FilterCheckbox (props) {
+  const {onClick, filtered, label} = props
+  return (
+    <Checkbox
+      defaultChecked={!filtered}
+      onCheck={onClick}
+      label={label}
+    />
   )
 }
 
 function CountryRow (props) {
   const {data, country, onClick, filtered} = props
   return (
-    <tr className={`Table-countryRow ${filterClassName(filtered)}`}>
-      <th onClick={onClick}>{country}</th>
+    <TableRow className={`Table-countryRow ${filterClassName(filtered)}`}>
+      <TableHeaderColumn>
+        <FilterCheckbox
+          label={country}
+          onClick={onClick}
+          filtered={filtered}
+        />
+      </TableHeaderColumn>
       {mapObj((value, i) => (
-        <td key={i}>{value}</td>
+        <TableRowColumn key={i}>{value}</TableRowColumn>
       ), data)}
-    </tr>
+    </TableRow>
   )
 }
 
@@ -44,30 +50,33 @@ function bindFilter (onFilterClick) {
   }
 }
 
-function Table (props) {
+function TableWrapper (props) {
   const {data, columns, filterTest, onFilterClick} = props
 
   const filterFun = bindFilter(onFilterClick)
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Country</th>
+    <Table>
+      <TableHeader displaySelectAll={false}>
+        <TableRow>
+          <TableHeaderColumn>Country</TableHeaderColumn>
           {columns.map((col) => {
             return (
               <ColumnHead
-                onClick={filterFun(col)}
                 key={col}
                 filtered={filterTest(col)}
               >
-                {col}
+                <FilterCheckbox
+                  label={col}
+                  filtered={filterTest(col)}
+                  onClick={filterFun(col)}
+                />
               </ColumnHead>
             )
           })}
-        </tr>
-      </thead>
-      <tbody>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {mapObj((data, name) => {
           return (
             <CountryRow
@@ -78,9 +87,9 @@ function Table (props) {
             />
           )
         }, data)}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   )
 }
 
-export default Table
+export default TableWrapper
