@@ -6,6 +6,12 @@ import mapObj from '../../mapObj'
 import {colLabel} from '../../labels'
 import {hasDescription} from '../../descriptions.js'
 
+const infoCellStyle = {
+  width: '48px',
+  paddingLeft: '0',
+  paddingRight: '0',
+}
+
 function filterClassName (filtered) {
   return filtered ? 'is-filtered' : ''
 }
@@ -14,10 +20,12 @@ function DescriptionButton (props) {
   const {onClick, country} = props
   if (hasDescription(country)) {
     return (
-      <IconButton
-        iconClassName="fa fa-info"
-        onClick={onClick}
-      />
+      <IconButton onClick={onClick}>
+        <FontIcon
+          className="fa fa-info"
+          color={Colors.cyan500}
+        />
+      </IconButton>
     )
   } else {
     return <span />
@@ -67,10 +75,10 @@ function CountryRow (props) {
   const infoClickHandler = () => onInfoClick(country)
   return (
     <TableRow className={`Table-countryRow ${filterClassName(rowFiltered)}`}>
-      <TableRowColumn>
+      <TableRowColumn style={infoCellStyle} className="Table-infoCell">
       <DescriptionButton onClick={infoClickHandler} country={country} />
       </TableRowColumn>
-      <TableHeaderColumn>
+      <TableHeaderColumn className="Table-countryName">
         <FilterCheckbox
           label={country}
           onClick={onClick}
@@ -78,7 +86,7 @@ function CountryRow (props) {
         />
       </TableHeaderColumn>
       {mapObj((value, col) => (
-        <TableRowColumn key={col} className="Table-featureCell">
+        <TableRowColumn key={col} className={`Table-featureCell ${filterClassName(rowFiltered || filterTest(col))}`}>
         <CellIcon
           value={value}
           filtered={rowFiltered || filterTest(col)}
@@ -104,8 +112,8 @@ function TableWrapper (props) {
     <Table className="Table" fixedHeader height="70vh">
       <TableHeader displaySelectAll={false}>
         <TableRow>
-          <TableHeaderColumn />
-          <TableHeaderColumn>Country</TableHeaderColumn>
+          <TableHeaderColumn style={infoCellStyle} className="Table-infoHeader" />
+          <TableHeaderColumn className="Table-countryHeader">Country</TableHeaderColumn>
           {columns.map((col) => {
             return (
               <ColumnHead

@@ -4,3 +4,19 @@
 .Table-featureIcon {
   text-align: center;
 }
+
+.Table-countryName,
+.Table-infoCell {
+  background-color: $grey200 !important;
+}
+
+.Table-featureCell {
+  transition: background-color 1s ease;
+}
+.Table-featureCell.is-filtered {
+  background-color: $grey200 !important;
+}
+
+.mui-table-header-row .mui-table-header-column:first-child {
+  display: none;
+}

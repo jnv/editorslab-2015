@@ -10,6 +10,18 @@ import Description from '../Description'
 import * as data from '../../data.js'
 import * as descData from '../../descriptions.js'
 
+const modalStyle = {
+  content: {
+    border: 'none',
+    background: 'none',
+    borderRadius: '0',
+    outline: 'none',
+    padding: '0',
+    maxWidth: '30em',
+    overflow: 'visible',
+  },
+}
+
 const Container = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
@@ -39,7 +51,6 @@ const Container = React.createClass({
   },
 
   setModalDisplay (key) {
-    console.log('displayModal', key)
     this.setState({modalDisplay: key})
   },
 
@@ -59,6 +70,7 @@ const Container = React.createClass({
         <Modal
           isOpen={!!modalCountry}
           onRequestClose={() => this.setModalDisplay(null)}
+          style={modalStyle}
         >
           <Description
             country={modalCountry}
