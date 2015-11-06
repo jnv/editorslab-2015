@@ -1,0 +1,20 @@
+[
+{"country":"Syria","people":189605,"war":1,"corruption":1,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Afghanistan","people":90845,"war":1,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Kosovo","people":68005,"war":0,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Eritrea","people":33730,"war":0,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Albania","people":52755,"war":0,"corruption":0,"freedom":0,"unemployment":1,"life expectancy":0},
+{"country":"Pakistan","people":31865,"war":1,"corruption":0,"freedom":1,"unemployment":0,"life expectancy":1},
+{"country":"Russia","people":14650,"war":0,"corruption":0,"freedom":1,"unemployment":0,"life expectancy":1},
+{"country":"Iraq","people":62075,"war":1,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Serbia","people":24845,"war":0,"corruption":1,"freedom":0,"unemployment":1,"life expectancy":0},
+{"country":"Nigeria","people":19345,"war":1,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Somalia","people":16425,"war":1,"corruption":0,"freedom":1,"unemployment":0,"life expectancy":1},
+{"country":"Iran","people":10125,"war":0,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Ukraine","people":15065,"war":1,"corruption":0,"freedom":0,"unemployment":1,"life expectancy":1},
+{"country":"Bangladesh","people":11305,"war":0,"corruption":0,"freedom":1,"unemployment":0,"life expectancy":1},
+{"country":"Mali","people":5415,"war":0,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Gambia","people":9205,"war":0,"corruption":0,"freedom":1,"unemployment":1,"life expectancy":1},
+{"country":"Macedonia","people":12850,"war":0,"corruption":1,"freedom":0,"unemployment":1,"life expectancy":0},
+{"country":"Georgia","people":5615,"war":0,"corruption":1,"freedom":0,"unemployment":1,"life expectancy":0}
+]
