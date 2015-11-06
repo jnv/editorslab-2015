@@ -67,6 +67,10 @@ const Container = React.createClass({
     const modalCountry = this.state.modalDisplay
     return (
       <div className="Container">
+        <h1>Turn-off the Migration</h1>
+        <p>
+          Migration is a complex problem influenced by many specific factors. By turning off some of the factors, you can try to reduce the number of migrants coming to European Union. Your main goal is to identify the main factors and <b>reduce the migration rate by half</b>.
+        </p>
         <Modal
           isOpen={!!modalCountry}
           onRequestClose={() => this.setModalDisplay(null)}

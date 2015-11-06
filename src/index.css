@@ -4,6 +4,14 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+h1 {
+  font-weight: 300;
+}
+
+b {
+  font-weight: 500;
+}
+
 #content {
   margin: 1ex;
 }
