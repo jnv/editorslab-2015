@@ -109,7 +109,8 @@ function TableWrapper (props) {
   const filterFun = bindFilter(onFilterClick)
 
   return (
-    <Table className="Table" fixedHeader height="70vh">
+    <div className="Table">
+    <Table fixedHeader height="70vh">
       <TableHeader displaySelectAll={false}>
         <TableRow>
           <TableHeaderColumn style={infoCellStyle} className="Table-infoHeader" />
@@ -144,6 +145,7 @@ function TableWrapper (props) {
         }, data)}
       </TableBody>
     </Table>
+    </div>
   )
 }
 

@@ -1,0 +1,11 @@
+.Intro-block {
+  width: 30%;
+  padding: 1ex 1em;
+  float: left;
+  margin-right: 1em;
+  min-height: 9em;
+}
+
+.Intro-link {
+  color: $cyan500;
+}

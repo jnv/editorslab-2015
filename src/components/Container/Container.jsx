@@ -3,9 +3,12 @@ import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme'
 import ThemeManager from 'material-ui/lib/styles/theme-manager'
 import Modal from 'react-modal'
 
+import {fromPairs} from 'ramda'
+
 import Table from '../Table'
 import Chart from '../Chart'
 import Description from '../Description'
+import Intro from './Intro'
 
 import * as data from '../../data.js'
 import * as descData from '../../descriptions.js'
@@ -50,6 +53,12 @@ const Container = React.createClass({
     this.setState({filters: filters})
   },
 
+  setFilters (filters) {
+    const pairs = filters.map(key => [key, true])
+    const newState = fromPairs(pairs)
+    this.setState({filters: newState})
+  },
+
   setModalDisplay (key) {
     this.setState({modalDisplay: key})
   },
@@ -71,6 +80,7 @@ const Container = React.createClass({
         <p>
           Migration is a complex problem influenced by many specific factors. By turning off some of the factors, you can try to reduce the number of migrants coming to European Union. Your main goal is to identify the main factors and <b>reduce the migration rate by half</b>.
         </p>
+        <Intro onFilterClick={this.setFilters} />
         <Modal
           isOpen={!!modalCountry}
           onRequestClose={() => this.setModalDisplay(null)}
