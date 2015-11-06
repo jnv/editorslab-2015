@@ -2,13 +2,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 var csswring = require('csswring')
 var path = require('path')
+var simpleVars = require('postcss-simple-vars')
 
 var config = {
   entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].[hash].js',
-    publicPath: '/',
   },
   module: {
     loaders: [{
@@ -41,7 +41,13 @@ var config = {
       inject: 'body', // Inject all scripts into the body
     }),
   ],
-  postcss: [autoprefixer, csswring],
+  postcss: [
+    simpleVars({
+      variables: require('material-ui/lib/styles/colors'),
+    }),
+    autoprefixer,
+    csswring,
+  ],
   // devtool: 'eval',
   devtool: 'sourcemap',
   devServer: {
