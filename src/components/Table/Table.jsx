@@ -1,7 +1,8 @@
 import React from 'react'
-import mapObj from '../../mapObj'
 import {FontIcon, Checkbox, Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn} from 'material-ui'
 import Colors from 'material-ui/lib/styles/colors'
+import mapObj from '../../mapObj'
+import {colLabel} from '../../labels'
 
 function filterClassName (filtered) {
   return filtered ? 'is-filtered' : ''
@@ -91,7 +92,7 @@ function TableWrapper (props) {
                 filtered={filterTest(col)}
               >
                 <FilterCheckbox
-                  label={col}
+                  label={colLabel(col)}
                   filtered={filterTest(col)}
                   onClick={filterFun(col)}
                 />
