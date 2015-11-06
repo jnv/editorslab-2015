@@ -7,6 +7,7 @@
   height: 100%;
   background-color: #f00;
   text-align: right;
+  transition: width 1s ease;
 }
 
 .Chart-percentDesc {
