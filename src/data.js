@@ -17,6 +17,8 @@ const getCount = R.map(R.prop('people'))
 const getFeatures = R.map(R.omit(OMITTED_COLS))
 const getCols = R.pipe(R.head, R.omit(OMITTED_COLS), R.keys)
 
+const toBool = val => !!val
+
 export const COUNT = getCount(DATA)
 export const FEATURES = getFeatures(DATA)
 export const COLUMNS = getCols(RAW_DATA)
@@ -30,8 +32,30 @@ const filterPredicate = (filters) => {
   return (value, key) => !filters[key]
 }
 
-export const countUnfiltered = R.memoize((filters) => {
+const truthyProps = R.pickBy((val) => val)
+
+// const filteredFeatures = filters => R.intersection(COLUMNS, R.keys(truthyProps(filters)))
+const keptFeatures = filters => R.difference(COLUMNS, R.keys(truthyProps(filters)))
+
+const rowMatches = (filters, row) => {
+  const columns = keptFeatures(filters)
+  const values = R.values(R.pick(columns, row))
+  return !R.all(R.equals(0))(values)
+}
+
+export const countUnfiltered = (filters) => {
   // first get rid of countries which are filtered
-  const activeCount = R.pickBy(filterPredicate(filters), COUNT)
-  return sumCount(activeCount)
-})
+  const activeCountries = R.pickBy(filterPredicate(filters), FEATURES)
+
+  const filteredCountries = []
+  R.mapObjIndexed((row, country) => {
+    // console.log(row, country, rowMatches(row))
+    if (rowMatches(filters, row)) {
+      filteredCountries.push(country)
+    }
+  }, activeCountries)
+
+  const counts = R.pick(filteredCountries, COUNT)
+
+  return sumCount(counts)
+}
