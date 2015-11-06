@@ -1,11 +1,27 @@
 import React from 'react'
-import {FontIcon, Checkbox, Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn} from 'material-ui'
+import {IconButton, FontIcon, Checkbox, Table, TableHeader,
+  TableRow, TableHeaderColumn, TableBody, TableRowColumn} from 'material-ui'
 import Colors from 'material-ui/lib/styles/colors'
 import mapObj from '../../mapObj'
 import {colLabel} from '../../labels'
+import {hasDescription} from '../../descriptions.js'
 
 function filterClassName (filtered) {
   return filtered ? 'is-filtered' : ''
+}
+
+function DescriptionButton (props) {
+  const {onClick, country} = props
+  if (hasDescription(country)) {
+    return (
+      <IconButton
+        iconClassName="fa fa-info"
+        onClick={onClick}
+      />
+    )
+  } else {
+    return <span />
+  }
 }
 
 function ColumnHead (props) {
@@ -46,10 +62,14 @@ function CellIcon (props) {
 }
 
 function CountryRow (props) {
-  const {filterTest, data, country, onClick} = props
+  const {filterTest, data, country, onClick, onInfoClick} = props
   const rowFiltered = filterTest(country)
+  const infoClickHandler = () => onInfoClick(country)
   return (
     <TableRow className={`Table-countryRow ${filterClassName(rowFiltered)}`}>
+      <TableRowColumn>
+      <DescriptionButton onClick={infoClickHandler} country={country} />
+      </TableRowColumn>
       <TableHeaderColumn>
         <FilterCheckbox
           label={country}
@@ -76,7 +96,7 @@ function bindFilter (onFilterClick) {
 }
 
 function TableWrapper (props) {
-  const {data, columns, filterTest, onFilterClick} = props
+  const {data, columns, filterTest, onFilterClick, onInfoClick} = props
 
   const filterFun = bindFilter(onFilterClick)
 
@@ -84,6 +104,7 @@ function TableWrapper (props) {
     <Table className="Table" fixedHeader height="70vh">
       <TableHeader displaySelectAll={false}>
         <TableRow>
+          <TableHeaderColumn />
           <TableHeaderColumn>Country</TableHeaderColumn>
           {columns.map((col) => {
             return (
@@ -109,6 +130,7 @@ function TableWrapper (props) {
               onClick={filterFun(name)}
               filterTest={filterTest}
               country={name}
+              onInfoClick={onInfoClick}
             />
           )
         }, data)}

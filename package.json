@@ -14,6 +14,7 @@
     "react-addons-transition-group": "^0.14.2",
     "react-addons-update": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-modal": "^0.6.1",
     "react-tap-event-plugin": "^0.2.1"
   },
   "devDependencies": {
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack -p --progress --colors --config webpack.production.config.js",
-    "start": "webpack-dev-server --hot --inline --progress --colors --content-base dist",
+    "start": "webpack-dev-server --hot --inline --progress --colors --content-base src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./dist"
   },
