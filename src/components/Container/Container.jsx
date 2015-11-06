@@ -4,6 +4,7 @@ import ThemeManager from 'material-ui/lib/styles/theme-manager'
 import Colors from 'material-ui/lib/styles/colors'
 
 import Table from '../Table'
+import Chart from '../Chart'
 
 import * as data from '../../data.js'
 
@@ -38,8 +39,13 @@ const Container = React.createClass({
     return !!this.state.filters[what]
   },
 
+  getFilteredCount () {
+    const ret = data.countUnfiltered(this.state.filters)
+    console.log(this.state.filters, ret)
+    return ret
+  },
+
   render () {
-    console.log(data.countUnfiltered(this.state.filters))
     return (
       <div className="Container">
         <Table
@@ -47,6 +53,10 @@ const Container = React.createClass({
           columns={data.COLUMNS}
           filterTest={this.isFiltered}
           onFilterClick={this.toggleFilter}
+        />
+        <Chart
+          total={data.COUNT_TOTAL}
+          current={this.getFilteredCount()}
         />
       </div>
     )

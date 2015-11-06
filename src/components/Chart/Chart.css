@@ -1,0 +1,14 @@
+.Chart {
+  height: 3em;
+}
+
+.Chart-fill {
+  display: block;
+  height: 100%;
+  background-color: #f00;
+  text-align: right;
+}
+
+.Chart-percentDesc {
+  margin: 1ex;
+}
