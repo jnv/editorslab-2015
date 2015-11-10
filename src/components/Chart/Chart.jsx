@@ -14,8 +14,8 @@ function Chart (props) {
   const classMod = (ratio <= 0.5) ? 'is-ok' : ''
 
   return (
-    <Paper zDepth={2}>
-      <div className="Chart">
+    <Paper zDepth={2} className="Chart">
+      <div className="Chart-wrapper">
         <span className={`Chart-fill ${classMod}`} style={{width: `${percentage}%`}}>
           <span className="Chart-percentDesc">
             {`${current} (${displayPercent(percentage)}%)`}

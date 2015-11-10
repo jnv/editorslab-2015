@@ -1,4 +1,8 @@
 .Chart {
+  clear: both;
+}
+
+.Chart-wrapper {
   height: 40px;
   background-color: $grey200;
   position: relative;

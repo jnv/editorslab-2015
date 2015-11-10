@@ -91,16 +91,16 @@ const Container = React.createClass({
             data={descData.getData(modalCountry)}
           />
         </Modal>
+        <Chart
+          total={data.COUNT_TOTAL}
+          current={this.getFilteredCount()}
+        />
         <Table
           data={data.FEATURES}
           columns={data.COLUMNS}
           filterTest={this.isFiltered}
           onFilterClick={this.toggleFilter}
           onInfoClick={this.setModalDisplay}
-        />
-        <Chart
-          total={data.COUNT_TOTAL}
-          current={this.getFilteredCount()}
         />
       </div>
     )
