@@ -43,19 +43,22 @@ const rowMatches = (filters, row) => {
   return !R.all(R.equals(0))(values)
 }
 
-export const countUnfiltered = (filters) => {
+const reduceKeys = (fn, obj) => R.reduce(fn, [], R.keys(obj))
+
+const countUnfilteredRaw = (filters) => {
   // first get rid of countries which are filtered
   const activeCountries = R.pickBy(filterPredicate(filters), FEATURES)
 
-  const filteredCountries = []
-  R.mapObjIndexed((row, country) => {
-    // console.log(row, country, rowMatches(row))
+  const filteredCountries = reduceKeys((acc, country) => {
+    const row = activeCountries[country]
     if (rowMatches(filters, row)) {
-      filteredCountries.push(country)
+      acc.push(country)
     }
+    return acc
   }, activeCountries)
 
   const counts = R.pick(filteredCountries, COUNT)
 
   return sumCount(counts)
 }
+export const countUnfiltered = R.memoize(countUnfilteredRaw)
