@@ -9,6 +9,7 @@ import Table from '../Table'
 import Chart from '../Chart'
 import Description from '../Description'
 import Intro from './Intro'
+import Footer from './Footer'
 
 import * as data from '../../data.js'
 import * as descData from '../../descriptions.js'
@@ -102,6 +103,7 @@ const Container = React.createClass({
           onFilterClick={this.toggleFilter}
           onInfoClick={this.setModalDisplay}
         />
+        <Footer />
       </div>
     )
   },

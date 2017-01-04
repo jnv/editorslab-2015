@@ -47,7 +47,8 @@ export default function Intro (props) {
 
       <Paper className="Intro-block">
         <p>
-          Do you think the most migrants <Link onClick={filter('Eritrea', 'Mali', 'Gambia', 'Nigeria', 'Somalia')}>come from African countries</Link>?
+          Do you think the most migrants{' '}
+          <Link onClick={filter('Eritrea', 'Mali', 'Gambia', 'Nigeria', 'Somalia')}>come from African countries</Link>?
           <br/>
           88% of total number of migrants come from Asia or Europe itself.
         </p>
