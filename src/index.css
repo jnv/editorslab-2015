@@ -15,3 +15,7 @@ b {
 #content {
   margin: 1ex;
 }
+
+a {
+  color: $cyan500;
+}
