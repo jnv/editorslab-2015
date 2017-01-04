@@ -17,6 +17,9 @@ function Description (props) {
         <blockquote>
           <p>{data.story}</p>
         </blockquote>
+        <p>
+          <small><a href={data.source}>Source</a></small>
+        </p>
       </CardText>
     </Card>
   )
